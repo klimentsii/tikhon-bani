@@ -23,7 +23,7 @@
               }
             ],
             "styles": ["src/styles.css"],
-            "outputPath": "dist/tikhon-bani/browser"
+            "outputPath": "dist/tikhon-bani"
           },
           "configurations": {
             "production": {
