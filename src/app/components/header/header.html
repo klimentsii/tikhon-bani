@@ -1,23 +1,37 @@
 <header class="header">
   <div class="header-container">
-    <!-- Группа логотипа и навигации слева -->
-    <div class="logo-nav-group">
-      <!-- Логотип -->
-      <div class="logo">
-        <a routerLink="/home" (click)="onNavClick()">
-          <img src="/logo.svg" alt="BANYA TUT" class="logo-image">
-        </a>
-      </div>
-
-      <!-- Навигация -->
-      <nav class="nav">
-        <ul class="nav-list">
-          <li><a routerLink="/home" routerLinkActive="active" (click)="onNavClick()">Главная</a></li>
-          <li><a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a></li>
-          <li><a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()">Комплектация</a></li>
-          <li><a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a></li>
-        </ul>
-      </nav>
+    <!-- Логотип -->
+    <div class="logo">
+      <a routerLink="/home" (click)="onNavClick()" title="BANYA TUT - Главная страница">
+        <img 
+          src="/assets/images/logo.png" 
+          alt="BANYA TUT - Логотип компании по производству банного оборудования" 
+          class="logo-image"
+          width="200"
+          height="60"
+          loading="eager"
+        >
+      </a>
     </div>
+
+    <!-- Мобильная кнопка меню -->
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen" aria-label="Открыть меню">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Навигация -->
+    <nav class="nav" [class.mobile-open]="isMobileMenuOpen">
+      <ul class="nav-list">
+        <li><a routerLink="/home" routerLinkActive="active" (click)="onNavClick()">Главная</a></li>
+        <li><a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a></li>
+        <li><a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()">Комплектация</a></li>
+        <li><a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a></li>
+      </ul>
+    </nav>
+
+    <!-- Затемнение для мобильного меню -->
+    <div class="mobile-overlay" [class.active]="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
   </div>
 </header>

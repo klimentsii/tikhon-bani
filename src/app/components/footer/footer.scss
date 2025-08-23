@@ -27,9 +27,11 @@ $footer-hover: #4a7c59;
   .footer-logo-image {
     height: 60px;
     width: auto;
+    max-width: 200px;
     margin-bottom: 15px;
     filter: brightness(0) invert(1); // Делаем логотип белым для футера
     transition: transform 0.3s ease;
+    object-fit: contain;
 
     &:hover {
       transform: scale(1.05);
