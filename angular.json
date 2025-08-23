@@ -20,7 +20,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+  "src/_redirects"
             ],
             "styles": ["src/styles.scss"],
             "outputPath": "dist/banya-tut"
@@ -73,7 +74,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+  "src/_redirects"
             ],
             "styles": ["src/styles.scss"]
           }
