@@ -1,3 +1,0 @@
-[build]
-  publish = "dist/tikhon-bani"
-  command = "ng build"
