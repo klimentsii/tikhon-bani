@@ -24,6 +24,18 @@ $footer-hover: #4a7c59;
 }
 
 .footer-logo {
+  .footer-logo-image {
+    height: 60px;
+    width: auto;
+    margin-bottom: 15px;
+    filter: brightness(0) invert(1); // Делаем логотип белым для футера
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
   h3 {
     font-size: 1.8rem;
     font-weight: 700;

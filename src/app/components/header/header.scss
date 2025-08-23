@@ -34,6 +34,18 @@ $nav-active-bg: #2d5a27;
   a {
     text-decoration: none;
     color: #333;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-image {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   h1 {
