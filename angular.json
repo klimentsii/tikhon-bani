@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tikhon-bani": {
+    "banya-tut": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -23,7 +23,7 @@
               }
             ],
             "styles": ["src/styles.scss"],
-            "outputPath": "dist/tikhon-bani"
+            "outputPath": "dist/banya-tut"
           },
           "configurations": {
             "production": {
@@ -53,10 +53,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "tikhon-bani:build:production"
+              "buildTarget": "banya-tut:build:production"
             },
             "development": {
-              "buildTarget": "tikhon-bani:build:development"
+              "buildTarget": "banya-tut:build:development"
             }
           },
           "defaultConfiguration": "development"
