@@ -1,0 +1,25 @@
+// Переменные
+$page-title-color: #2c5aa0;
+$page-text-color: #333;
+$page-bg: #ffffff;
+
+.equipment-page {
+  padding: 40px 20px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background: $page-bg;
+
+  h1 {
+    color: $page-title-color;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  p {
+    color: $page-text-color;
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+}

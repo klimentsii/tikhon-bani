@@ -1,0 +1,121 @@
+// Переменные
+$header-bg: #ffffff;
+$header-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+$logo-color: #2c5aa0;
+$nav-hover-bg: #f5f5f5;
+$nav-active-bg: #2c5aa0;
+$btn-hover-bg: #1e4a8a;
+
+.header {
+  background: $header-bg;
+  box-shadow: $header-shadow;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  &-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+  }
+}
+
+// Группируем логотип и навигацию слева
+.logo-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.logo {
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: $logo-color;
+  }
+}
+
+.nav {
+  &-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+
+    li {
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background: $nav-hover-bg;
+          color: $logo-color;
+        }
+
+        &.active {
+          background: $nav-active-bg;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.contact-btn {
+  .btn-primary {
+    background: $logo-color;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $btn-hover-bg;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($logo-color, 0.3);
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .header {
+    &-container {
+      flex-direction: column;
+      height: auto;
+      padding: 15px 20px;
+    }
+  }
+  
+  .logo-nav-group {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .nav-list {
+    gap: 15px;
+    margin: 15px 0;
+  }
+  
+  .contact-btn {
+    margin-top: 10px;
+  }
+}
