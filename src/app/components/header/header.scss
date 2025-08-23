@@ -1,10 +1,9 @@
-// Переменные - зеленая тематика
+// Variables - green theme
 $header-bg: #ffffff;
 $header-shadow: 0 2px 10px rgba(45, 90, 39, 0.1);
 $logo-color: #2d5a27;
 $nav-hover-bg: #f0f7f0;
 $nav-active-bg: #2d5a27;
-$btn-hover-bg: #1e4a1a;
 
 .header {
   background: $header-bg;
@@ -19,12 +18,12 @@ $btn-hover-bg: #1e4a1a;
     padding: 0 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     height: 70px;
   }
 }
 
-// Группируем логотип и навигацию слева
+// Grouping logo and navigation to the left
 .logo-nav-group {
   display: flex;
   align-items: center;
@@ -76,26 +75,7 @@ $btn-hover-bg: #1e4a1a;
   }
 }
 
-.contact-btn {
-  .btn-primary {
-    background: $logo-color;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: $btn-hover-bg;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba($logo-color, 0.3);
-    }
-  }
-}
-
-// Адаптивность
+// Responsiveness
 @media (max-width: 768px) {
   .header {
     &-container {
@@ -104,18 +84,14 @@ $btn-hover-bg: #1e4a1a;
       padding: 15px 20px;
     }
   }
-  
+
   .logo-nav-group {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .nav-list {
     gap: 15px;
     margin: 15px 0;
-  }
-  
-  .contact-btn {
-    margin-top: 10px;
   }
 }

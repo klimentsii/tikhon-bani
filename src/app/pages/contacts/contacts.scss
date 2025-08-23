@@ -1,38 +1,37 @@
-// Переменные - зеленая тематика
+// Variables - green theme
+$page-bg: #ffffff;
 $page-title-color: #2d5a27;
 $page-text-color: #2c3e2d;
-$page-bg: #ffffff;
 $section-bg: #f0f7f0;
-$card-bg: #ffffff;
-$border-color: #c8e6c9;
 $accent-color: #4a7c59;
 
 .contacts-page {
   background: $page-bg;
-  padding: 40px 0;
+  padding: 40px 0 80px 0;
+  min-height: calc(100vh - 200px);
 }
 
-// Заголовок страницы
 .page-header {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+  padding: 40px 0;
+  background: $section-bg;
+  border-radius: 12px;
 
   h1 {
     color: $page-title-color;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin: 0;
   }
 
   p {
     color: $page-text-color;
-    font-size: 1.3rem;
-    max-width: 600px;
-    margin: 0 auto;
+    font-size: 1.2rem;
+    margin: 15px 0 0 0;
   }
 }
 
-// Основная контактная информация
 .contact-info {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -41,34 +40,35 @@ $accent-color: #4a7c59;
 }
 
 .contact-card {
-  background: $card-bg;
+  background: $section-bg;
   border-radius: 12px;
   padding: 30px;
-  box-shadow: 0 4px 20px rgba(45, 90, 39, 0.1);
   display: flex;
   align-items: center;
   gap: 20px;
   transition: all 0.3s ease;
+  border: 2px solid transparent;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(45, 90, 39, 0.15);
+    box-shadow: 0 10px 25px rgba(45, 90, 39, 0.15);
+    border-color: $accent-color;
   }
 
   .contact-icon {
-    width: 60px;
-    height: 60px;
-    background: $section-bg;
+    width: 50px;
+    height: 50px;
+    background: $accent-color;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $accent-color;
     flex-shrink: 0;
 
     svg {
-      width: 30px;
-      height: 30px;
+      width: 24px;
+      height: 24px;
+      color: white;
     }
   }
 
@@ -77,13 +77,14 @@ $accent-color: #4a7c59;
       color: $page-title-color;
       font-size: 1.3rem;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin: 0 0 10px 0;
     }
 
     .contact-link {
       color: $accent-color;
       text-decoration: none;
       font-size: 1.1rem;
+      font-weight: 500;
       transition: color 0.3s ease;
 
       &:hover {
@@ -94,13 +95,12 @@ $accent-color: #4a7c59;
   }
 }
 
-// Социальные сети
 .social-section {
   margin-bottom: 60px;
 
   h2 {
     color: $page-title-color;
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
     text-align: center;
     margin-bottom: 40px;
@@ -110,142 +110,122 @@ $accent-color: #4a7c59;
 .social-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+  gap: 25px;
 }
 
 .social-card {
-  background: $card-bg;
+  background: $section-bg;
   border-radius: 12px;
   padding: 25px;
+  text-align: center;
   text-decoration: none;
   color: $page-text-color;
-  text-align: center;
   transition: all 0.3s ease;
   border: 2px solid transparent;
 
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.15);
+    box-shadow: 0 8px 20px rgba(45, 90, 39, 0.15);
+    border-color: $accent-color;
   }
 
   .social-icon {
-    width: 50px;
-    height: 50px;
-    margin: 0 auto 15px;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px auto;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background: $section-bg;
 
     svg {
-      width: 25px;
-      height: 25px;
+      width: 30px;
+      height: 30px;
     }
   }
 
   span {
-    font-weight: 600;
     font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
   }
 
-  // Цвета для разных соцсетей
+  // Instagram
   &.instagram {
-    &:hover {
-      border-color: #e4405f;
-      color: #e4405f;
-    }
     .social-icon {
-      color: #e4405f;
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
     }
   }
 
+  // VK
   &.vk {
-    &:hover {
-      border-color: #4c75a3;
-      color: #4c75a3;
-    }
     .social-icon {
-      color: #4c75a3;
+      background: #4a76a8;
     }
   }
 
+  // YouTube
   &.youtube {
-    &:hover {
-      border-color: #ff0000;
-      color: #ff0000;
-    }
     .social-icon {
-      color: #ff0000;
+      background: #ff0000;
     }
   }
 
+  // Telegram
   &.telegram {
-    &:hover {
-      border-color: #0088cc;
-      color: #0088cc;
-    }
     .social-icon {
-      color: #0088cc;
+      background: #0088cc;
     }
   }
 
+  // TikTok
   &.tiktok {
-    &:hover {
-      border-color: #000000;
-      color: #000000;
-    }
     .social-icon {
-      color: #000000;
+      background: #000000;
     }
   }
 }
 
-// Дополнительная информация
 .additional-info {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 30px;
 }
 
 .info-card {
   background: $section-bg;
   border-radius: 12px;
-  padding: 25px;
+  padding: 30px;
   text-align: center;
   border-left: 4px solid $accent-color;
 
   h3 {
     color: $page-title-color;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin: 0 0 20px 0;
   }
 
   p {
     color: $page-text-color;
-    margin-bottom: 8px;
-    font-size: 1rem;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    font-size: 1.1rem;
+    margin: 10px 0;
+    line-height: 1.6;
   }
 }
 
-// Адаптивность
+// Responsiveness
 @media (max-width: 768px) {
   .contacts-page {
-    padding: 30px 0;
+    padding: 30px 0 60px 0;
   }
 
   .page-header {
     margin-bottom: 40px;
+    padding: 30px 0;
 
     h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
 
     p {
@@ -255,28 +235,37 @@ $accent-color: #4a7c59;
 
   .contact-info {
     grid-template-columns: 1fr;
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: 25px;
+    margin-bottom: 50px;
   }
 
   .contact-card {
-    padding: 20px;
-    flex-direction: column;
-    text-align: center;
+    padding: 25px;
+    gap: 15px;
 
     .contact-icon {
-      width: 50px;
-      height: 50px;
+      width: 45px;
+      height: 45px;
 
       svg {
-        width: 25px;
-        height: 25px;
+        width: 22px;
+        height: 22px;
+      }
+    }
+
+    .contact-details {
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      .contact-link {
+        font-size: 1rem;
       }
     }
   }
 
   .social-section {
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 
     h2 {
       font-size: 1.8rem;
@@ -285,20 +274,21 @@ $accent-color: #4a7c59;
   }
 
   .social-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
   }
 
   .social-card {
     padding: 20px;
 
     .social-icon {
-      width: 40px;
-      height: 40px;
+      width: 50px;
+      height: 50px;
+      margin-bottom: 12px;
 
       svg {
-        width: 20px;
-        height: 20px;
+        width: 25px;
+        height: 25px;
       }
     }
 
@@ -309,11 +299,20 @@ $accent-color: #4a7c59;
 
   .additional-info {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 25px;
   }
 
   .info-card {
-    padding: 20px;
+    padding: 25px;
+
+    h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -324,11 +323,12 @@ $accent-color: #4a7c59;
     }
   }
 
-  .contact-card {
-    padding: 15px;
+  .social-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
   }
 
   .social-card {
-    padding: 15px;
+    padding: 20px 15px;
   }
 }

@@ -4,25 +4,20 @@
     <div class="logo-nav-group">
       <!-- Логотип -->
       <div class="logo">
-        <a routerLink="/home">
+        <a routerLink="/home" (click)="onNavClick()">
           <h1>Tikhon Bani</h1>
         </a>
       </div>
-      
+
       <!-- Навигация -->
       <nav class="nav">
         <ul class="nav-list">
-          <li><a routerLink="/home" routerLinkActive="active">Главная</a></li>
-          <li><a routerLink="/catalog" routerLinkActive="active">Каталог</a></li>
-          <li><a routerLink="/equipment" routerLinkActive="active">Комплектация</a></li>
-          <li><a routerLink="/contacts" routerLinkActive="active">Контакты</a></li>
+          <li><a routerLink="/home" routerLinkActive="active" (click)="onNavClick()">Главная</a></li>
+          <li><a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a></li>
+          <li><a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()">Комплектация</a></li>
+          <li><a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a></li>
         </ul>
       </nav>
-    </div>
-    
-    <!-- Кнопка связаться -->
-    <div class="contact-btn">
-      <button class="btn-primary">Связаться</button>
     </div>
   </div>
 </header>
