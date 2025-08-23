@@ -1,25 +1,357 @@
-// Переменные
-$page-title-color: #2c5aa0;
-$page-text-color: #333;
+// Переменные - зеленая тематика
+$page-title-color: #2d5a27;
+$page-text-color: #2c3e2d;
 $page-bg: #ffffff;
+$section-bg: #f0f7f0;
+$card-bg: #ffffff;
+$border-color: #c8e6c9;
+$accent-color: #4a7c59;
 
 .home-page {
-  padding: 40px 20px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   background: $page-bg;
+}
+
+// Hero секция
+.hero {
+  background: linear-gradient(135deg, $section-bg 0%, $card-bg 100%);
+  padding: 80px 0 40px 0;
+  text-align: center;
+  margin-bottom: 0;
 
   h1 {
     color: $page-title-color;
     margin-bottom: 20px;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
+    line-height: 1.2;
   }
 
-  p {
+  .hero-subtitle {
     color: $page-text-color;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Секция калькулятора
+.calculator-section {
+  padding: 40px 0 60px 0;
+  background: $section-bg;
+  margin-bottom: 60px;
+
+  .calculator-card {
+    background: $card-bg;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 20px rgba(45, 90, 39, 0.1);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+
+    h2 {
+      color: $page-title-color;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+
+    p {
+      color: $page-text-color;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    .calculator-btn {
+      margin-bottom: 30px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(45, 90, 39, 0.3);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      &:hover::after {
+        left: 100%;
+      }
+    }
+  }
+
+  .calculator-form {
+    background: $section-bg;
+    border-radius: 8px;
+    padding: 30px;
+    margin-top: 20px;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 0;
+    overflow: hidden;
+
+    &.show {
+      opacity: 1;
+      transform: translateY(0);
+      max-height: 500px;
+
+      .form-group {
+        animation: slideInUp 0.5s ease forwards;
+        
+        &:nth-child(1) { animation-delay: 0.1s; }
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.3s; }
+      }
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: $page-title-color;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .form-input,
+      .form-select {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid $border-color;
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: $card-bg;
+
+        &:focus {
+          outline: none;
+          border-color: $accent-color;
+          box-shadow: 0 0 0 3px rgba($accent-color, 0.1);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      .form-select {
+        cursor: pointer;
+      }
+    }
+
+    .btn {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}
+
+// Секция "О нас"
+.about-section {
+  padding: 60px 0;
+  background: $page-bg;
+
+  .about-content {
+    max-width: 900px;
+    margin: 0 auto;
+
+    h2 {
+      color: $page-title-color;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    h3 {
+      color: $page-title-color;
+      margin: 40px 0 20px 0;
+      font-size: 1.8rem;
+      font-weight: 600;
+      border-left: 4px solid $accent-color;
+      padding-left: 20px;
+    }
+
+    h4 {
+      color: $page-title-color;
+      margin: 25px 0 15px 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    p {
+      color: $page-text-color;
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .about-lead {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: $accent-color;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+
+    .philosophy-list,
+    .features-list,
+    .price-features {
+      margin: 20px 0;
+      padding-left: 25px;
+
+      li {
+        color: $page-text-color;
+        margin-bottom: 15px;
+        line-height: 1.6;
+        font-size: 1.05rem;
+
+        strong {
+          color: $page-title-color;
+        }
+      }
+    }
+
+    .advantage-item {
+      background: $section-bg;
+      border-radius: 8px;
+      padding: 25px;
+      margin-bottom: 25px;
+      border-left: 4px solid $accent-color;
+
+      h4 {
+        margin-top: 0;
+        color: $page-title-color;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      ul {
+        margin: 15px 0;
+        padding-left: 20px;
+
+        li {
+          margin-bottom: 10px;
+          color: $page-text-color;
+        }
+      }
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 0 30px 0;
+    margin-bottom: 0;
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  .calculator-section {
+    padding: 30px 0 40px 0;
+    margin-bottom: 40px;
+
+    .calculator-card {
+      padding: 30px 20px;
+      margin: 0 15px;
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .calculator-form {
+        padding: 20px;
+      }
+    }
+  }
+
+  .about-section {
+    padding: 40px 0;
+
+    .about-content {
+      padding: 0 15px;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        margin: 30px 0 15px 0;
+        padding-left: 15px;
+      }
+
+      h4 {
+        font-size: 1.2rem;
+      }
+
+      .about-lead {
+        font-size: 1.2rem;
+      }
+
+      .advantage-item {
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 0;
+
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .calculator-section {
+    .calculator-card {
+      padding: 25px 15px;
+
+      h2 {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .about-section {
+    .about-content {
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      h3 {
+        font-size: 1.4rem;
+      }
+    }
   }
 }

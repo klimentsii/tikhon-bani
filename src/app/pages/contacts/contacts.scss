@@ -1,0 +1,334 @@
+// Переменные - зеленая тематика
+$page-title-color: #2d5a27;
+$page-text-color: #2c3e2d;
+$page-bg: #ffffff;
+$section-bg: #f0f7f0;
+$card-bg: #ffffff;
+$border-color: #c8e6c9;
+$accent-color: #4a7c59;
+
+.contacts-page {
+  background: $page-bg;
+  padding: 40px 0;
+}
+
+// Заголовок страницы
+.page-header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  h1 {
+    color: $page-title-color;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  p {
+    color: $page-text-color;
+    font-size: 1.3rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+// Основная контактная информация
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.contact-card {
+  background: $card-bg;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(45, 90, 39, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(45, 90, 39, 0.15);
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    background: $section-bg;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $accent-color;
+    flex-shrink: 0;
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  .contact-details {
+    h3 {
+      color: $page-title-color;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .contact-link {
+      color: $accent-color;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $page-title-color;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Социальные сети
+.social-section {
+  margin-bottom: 60px;
+
+  h2 {
+    color: $page-title-color;
+    font-size: 2.2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.social-card {
+  background: $card-bg;
+  border-radius: 12px;
+  padding: 25px;
+  text-decoration: none;
+  color: $page-text-color;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(45, 90, 39, 0.15);
+  }
+
+  .social-icon {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: $section-bg;
+
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  span {
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  // Цвета для разных соцсетей
+  &.instagram {
+    &:hover {
+      border-color: #e4405f;
+      color: #e4405f;
+    }
+    .social-icon {
+      color: #e4405f;
+    }
+  }
+
+  &.vk {
+    &:hover {
+      border-color: #4c75a3;
+      color: #4c75a3;
+    }
+    .social-icon {
+      color: #4c75a3;
+    }
+  }
+
+  &.youtube {
+    &:hover {
+      border-color: #ff0000;
+      color: #ff0000;
+    }
+    .social-icon {
+      color: #ff0000;
+    }
+  }
+
+  &.telegram {
+    &:hover {
+      border-color: #0088cc;
+      color: #0088cc;
+    }
+    .social-icon {
+      color: #0088cc;
+    }
+  }
+
+  &.tiktok {
+    &:hover {
+      border-color: #000000;
+      color: #000000;
+    }
+    .social-icon {
+      color: #000000;
+    }
+  }
+}
+
+// Дополнительная информация
+.additional-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.info-card {
+  background: $section-bg;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+  border-left: 4px solid $accent-color;
+
+  h3 {
+    color: $page-title-color;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  p {
+    color: $page-text-color;
+    margin-bottom: 8px;
+    font-size: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .contacts-page {
+    padding: 30px 0;
+  }
+
+  .page-header {
+    margin-bottom: 40px;
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+    }
+  }
+
+  .contact-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .contact-card {
+    padding: 20px;
+    flex-direction: column;
+    text-align: center;
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+
+      svg {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+
+  .social-section {
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+  }
+
+  .social-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+  }
+
+  .social-card {
+    padding: 20px;
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
+
+  .additional-info {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .info-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    h1 {
+      font-size: 1.8rem;
+    }
+  }
+
+  .contact-card {
+    padding: 15px;
+  }
+
+  .social-card {
+    padding: 15px;
+  }
+}
