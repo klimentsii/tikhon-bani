@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
 
 @Component({
   selector: 'app-installment',
@@ -10,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './installment.scss'
 })
 export class Installment {
+  http = inject(HttpClient);
   currentStep = 1;
   totalSteps = 4;
   
@@ -56,9 +59,34 @@ export class Installment {
 
   // Отправка формы
   submitForm() {
-    console.log('Ответы пользователя:', this.answers);
-    // Здесь можно добавить логику отправки данных на сервер
-    alert('Спасибо! Мы свяжемся с вами в ближайшее время.');
+      const date = new Date();
+      const formattedDate = date.toLocaleString('ru-RU', {
+        day: '2-digit', month: '2-digit', year: 'numeric',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+  
+      const message = `📝 *Новая заявка*\n\n` +
+        `📅 Дата: ${formattedDate}\n` +
+        `👤 Имя: ${this.answers.name}\n` +
+        `📞 Номер: ${this.answers.phone}\n` +
+        `🔘 Формат оплаты: ${this.answers.creditType}\n` +
+        `💬 Срок: ${this.answers.term}\n` +
+        `💬 Ежемесячный платеж: ${this.answers.monthlyPayment}`;
+  
+      const url = `https://api.telegram.org/bot8409391989:AAGfNKCOk4pZP-nWHEzmRJ2JzN0EjnBcUkk/sendMessage`;
+  
+      this.http.post(url, {
+        chat_id: '7557882902',
+        text: message,
+        parse_mode: 'Markdown',
+      }).subscribe({
+        error: (errorResponse) => {
+          console.log(errorResponse);
+        },
+        complete: () => {
+          console.log('success');
+        }
+      });
   }
 
   // Проверка, можно ли перейти к следующему шагу
