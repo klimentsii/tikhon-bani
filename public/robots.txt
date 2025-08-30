@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Запрещаем индексацию служебных файлов
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /*.json
+Disallow: /*.ts
+Disallow: /*.scss
+
+# Указываем расположение sitemap
+Sitemap: https://banya-tut.ru/sitemap.xml
