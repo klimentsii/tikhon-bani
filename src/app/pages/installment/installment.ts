@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { inject } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-installment',
@@ -11,7 +12,7 @@ import { inject } from '@angular/core';
   templateUrl: './installment.html',
   styleUrl: './installment.scss'
 })
-export class Installment {
+export class Installment implements OnInit {
   http = inject(HttpClient);
   currentStep = 1;
   totalSteps = 4;
@@ -24,6 +25,17 @@ export class Installment {
     phone: '',
     name: ''
   };
+
+  constructor(
+    private titleService: Title,
+    private metaService: Meta
+  ) {}
+
+  ngOnInit() {
+    this.titleService.setTitle('Оформление рассрочки на баню-бочку и квадратную баню | BANYA TUT');
+    this.metaService.updateTag({ name: 'description', content: 'Оформление рассрочки на баню-бочку и квадратную баню от BANYA TUT. Заполните форму и мы подберем для вас оптимальные условия рассрочки. Без переплат и скрытых комиссий.' });
+    this.metaService.updateTag({ name: 'keywords', content: 'рассрочка на баню, кредит на баню, рассрочка баня-бочка, рассрочка квадратная баня, оформить рассрочку, условия рассрочки' });
+  }
 
   // Переход к следующему шагу
   nextStep() {

@@ -1,12 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-equipment',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './equipment.html',
   styleUrl: './equipment.scss'
 })
-export class Equipment {
+export class Equipment implements OnInit {
+  constructor(
+    private titleService: Title,
+    private metaService: Meta
+  ) {}
 
+  ngOnInit() {
+    this.titleService.setTitle('Комплектация бань-бочек и квадратных бань | BANYA TUT');
+    this.metaService.updateTag({ name: 'description', content: 'Полная комплектация бань-бочек и квадратных бань от BANYA TUT. Стандартная комплектация, дополнительные опции, гарантия качества. Вагонная технология сборки, эксклюзивная подготовка древесины.' });
+    this.metaService.updateTag({ name: 'keywords', content: 'комплектация бань-бочек, комплектация квадратных бань, печь для бани, дымоход, двери для бани, окна для бани, полки для парения, гарантия на баню' });
+  }
 }
