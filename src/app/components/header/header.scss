@@ -128,6 +128,11 @@ $nav-active-bg: #2d5a27;
         &.favorites-item {
           position: relative;
 
+          a {
+            display: flex;
+            align-items: center;
+          }
+
           .favorites-icon {
             font-size: 1.2rem;
             margin-right: 0.3rem;
