@@ -4,315 +4,39 @@
     <p>Профессиональные бани-бочки и квадро-бани различных размеров</p>
   </div>
 
-  <!-- Раздел Баня-бочки -->
-  <section class="catalog-section">
-    <h2 class="section-title">Бани-бочки</h2>
-    <p class="section-description">Классические бани-бочки из натурального дерева для комфортного отдыха</p>
+  <!-- Динамические разделы каталога -->
+  <section class="catalog-section" *ngFor="let section of catalogSections">
+    <h2 class="section-title">{{ section.title }}</h2>
+    <p class="section-description">{{ section.description }}</p>
     
     <div class="products-grid">
-      <!-- Баня-бочка 2 метра -->
-      <div class="product-card">
+      <!-- Динамические карточки продуктов -->
+      <div class="product-card" 
+           [class.liked]="product.isLiked"
+           *ngFor="let product of section.products; trackBy: trackByProductId">
         <div class="product-image">
-          <img src="assets/images/bani-bochki/barrel-sauna-2-meters-wooden.png" 
-               alt="Баня-бочка 2 метра" 
+          <img [src]="product.image" 
+               [alt]="product.alt" 
                loading="lazy">
           <div class="image-placeholder" style="display: none;">
             <span>Изображение загружается...</span>
           </div>
+          <!-- Кнопка лайка -->
+          <button class="like-button" 
+                  [class.liked]="product.isLiked"
+                  (click)="toggleLike(product)"
+                  [attr.aria-label]="product.isLiked ? 'Убрать из избранного' : 'Добавить в избранное'">
+            <svg class="heart-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+          </button>
         </div>
         <div class="product-info">
-          <h3>Баня-бочка 2 метра</h3>
+          <h3>{{ product.name }}</h3>
           <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,8 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Баня-бочка 3 метра -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/bani-bochki/barrel-sauna-3-meters-cedar.png" 
-               alt="Баня-бочка 3 метра" 
-               loading="lazy">
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня-бочка 3 метра</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,8 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Баня-бочка 4 метра -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/bani-bochki/barrel-sauna-4-meters-premium.png" 
-               alt="Баня-бочка 4 метра" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня-бочка 4 метра</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,9 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Баня-бочка 5 метров -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/bani-bochki/barrel-sauna-5-meters-luxury.png" 
-               alt="Баня-бочка 5 метров" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня-бочка 5 метров</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Комната отдыха:</span>
-              <span class="spec-value">1,7 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Душевая:</span>
-              <span class="spec-value">1,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,9 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Баня-бочка 6 метров -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/bani-bochki/barrel-sauna-6-meters-professional.png" 
-               alt="Баня-бочка 6 метров" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня-бочка 6 метров</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Комната отдыха:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Душевая:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Раздел Квадро-бани -->
-  <section class="catalog-section">
-    <h2 class="section-title">Квадро-бани</h2>
-    <p class="section-description">Современные квадро-бани с квадратной формой и расширенным функционалом</p>
-    
-    <div class="products-grid">
-      <!-- Квадро-баня 3 метра -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/kvadro-bani/quadro-sauna-3-meters-luxury.png" 
-               alt="Баня квадро-бочка 3 метра" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня квадро-бочка 3 метра</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,8 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Квадро-баня 4 метра -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/kvadro-bani/quadro-sauna-4-meters-premium.png" 
-               alt="Баня квадро-бочка 4 метра" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня квадро-бочка 4 метра</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,9 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Квадро-баня 5 метров -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/kvadro-bani/quadro-sauna-5-meters-deluxe.png" 
-               alt="Баня квадро-бочка 5 метров" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня квадро-бочка 5 метров</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Комната отдыха:</span>
-              <span class="spec-value">1,7 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Душевая:</span>
-              <span class="spec-value">1,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">1,9 м</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Квадро-баня 6 метров -->
-      <div class="product-card">
-        <div class="product-image">
-          <img src="assets/images/kvadro-bani/quadro-sauna-6-meters-professional.png" 
-               alt="Баня квадро-бочка 6 метров" 
-               loading="lazy"
-               >
-          <div class="image-placeholder" style="display: none;">
-            <span>Изображение загружается...</span>
-          </div>
-        </div>
-        <div class="product-info">
-          <h3>Баня квадро-бочка 6 метров</h3>
-          <div class="specifications">
-            <div class="spec-item">
-              <span class="spec-label">Ширина:</span>
-              <span class="spec-value">2,2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Высота:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Комната отдыха:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Душевая:</span>
-              <span class="spec-value">2 м</span>
-            </div>
-            <div class="spec-item">
-              <span class="spec-label">Парильное помещение:</span>
-              <span class="spec-value">2 м</span>
+            <div class="spec-item" *ngFor="let spec of product.specifications">
+              <span class="spec-label">{{ spec.label }}</span>
+              <span class="spec-value">{{ spec.value }}</span>
             </div>
           </div>
         </div>

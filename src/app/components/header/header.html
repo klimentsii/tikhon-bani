@@ -30,6 +30,15 @@
         <li><a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a></li>
         <li><a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()">Комплектация</a></li>
         <li><a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a></li>
+        <li class="favorites-item">
+          <a routerLink="/favorites" routerLinkActive="active" (click)="onNavClick()">
+            <span class="favorites-icon">🛒</span>
+            Избранное
+            @if (likesCount > 0) {
+              <span class="favorites-badge">{{ likesCount }}</span>
+            }
+          </a>
+        </li>
       </ul>
     </nav>
 

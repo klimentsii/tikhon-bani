@@ -102,26 +102,54 @@ $nav-active-bg: #2d5a27;
     padding: 0;
     gap: 30px;
 
-    li {
-      a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-        padding: 8px 16px;
-        border-radius: 6px;
-        transition: all 0.3s ease;
+          li {
+        a {
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          padding: 8px 16px;
+          border-radius: 6px;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
 
-        &:hover {
-          background: $nav-hover-bg;
-          color: $logo-color;
+          &:hover {
+            background: $nav-hover-bg;
+            color: $logo-color;
+          }
+
+          &.active {
+            background: $nav-active-bg;
+            color: white;
+          }
         }
 
-        &.active {
-          background: $nav-active-bg;
-          color: white;
+        &.favorites-item {
+          position: relative;
+
+          .favorites-icon {
+            font-size: 1.2rem;
+            margin-right: 0.3rem;
+          }
+
+          .favorites-badge {
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0 6px;
+            line-height: 1;
+            animation: badgePulse 0.6s ease;
+          }
         }
       }
-    }
   }
 }
 
@@ -240,5 +268,18 @@ $nav-active-bg: #2d5a27;
     &.mobile-open {
       right: 0;
     }
+  }
+}
+
+// Анимация для бейджа лайков
+@keyframes badgePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
