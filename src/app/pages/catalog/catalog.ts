@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { CatalogSection, Product, CATALOG_DATA } from './catalog.data';
 import { CartService } from '../../services/cart.service';
 
@@ -18,7 +19,8 @@ export class Catalog implements OnInit {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -96,5 +98,11 @@ export class Catalog implements OnInit {
 
   trackByProductId(index: number, product: Product): string {
     return product.id;
+  }
+
+  calculatePrice(product: Product): void {
+    this.router.navigate(['/price-calculation'], {
+      queryParams: { productId: product.id },
+    });
   }
 }

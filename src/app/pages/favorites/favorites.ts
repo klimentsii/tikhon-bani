@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { Product, CATALOG_DATA } from '../catalog/catalog.data';
 
@@ -19,7 +19,8 @@ export class Favorites implements OnInit {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -83,5 +84,11 @@ export class Favorites implements OnInit {
 
   trackByProductId(index: number, product: Product): string {
     return product.id;
+  }
+
+  calculatePrice(product: Product): void {
+    this.router.navigate(['/price-calculation'], {
+      queryParams: { productId: product.id },
+    });
   }
 }

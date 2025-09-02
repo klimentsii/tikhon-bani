@@ -7,6 +7,7 @@ import { OfferAgreement } from './pages/offer-agreement/offer-agreement';
 import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
 import { Installment } from './pages/installment/installment';
 import { Favorites } from './pages/favorites/favorites';
+import { PriceCalculationComponent } from './pages/price-calculation/price-calculation';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,4 +19,5 @@ export const routes: Routes = [
   { path: 'offer-agreement', component: OfferAgreement },
   { path: 'privacy-policy', component: PrivacyPolicy },
   { path: 'installment', component: Installment },
+  { path: 'price-calculation', component: PriceCalculationComponent },
 ];

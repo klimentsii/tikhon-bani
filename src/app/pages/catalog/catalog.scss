@@ -204,6 +204,100 @@ $page-bg: #ffffff;
           }
         }
       }
+
+      .calculate-price-btn {
+        width: 100%;
+        padding: 1rem 1.5rem;
+        margin-top: 1.5rem;
+        background: linear-gradient(135deg, #2ecc71, #27ae60);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(46, 204, 113, 0.3);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s ease;
+        }
+
+        &:hover {
+          background: linear-gradient(135deg, #27ae60, #229954);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 30px rgba(46, 204, 113, 0.4);
+
+          &::before {
+            left: 100%;
+          }
+        }
+
+        &:active {
+          transform: translateY(-1px);
+          box-shadow: 0 6px 25px rgba(46, 204, 113, 0.5);
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.3);
+        }
+
+        &:disabled {
+          background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: 0 2px 10px rgba(189, 195, 199, 0.3);
+
+          &:hover {
+            transform: none;
+            box-shadow: 0 2px 10px rgba(189, 195, 199, 0.3);
+          }
+
+          &::before {
+            display: none;
+          }
+        }
+
+        // Анимация для состояния загрузки
+        &.loading {
+          position: relative;
+          color: transparent;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid transparent;
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+          }
+        }
+      }
+
+      // Анимация вращения для загрузки
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
     }
   }
 }
@@ -260,6 +354,30 @@ $page-bg: #ffffff;
         }
       }
     }
+  }
+}
+
+.calculate-price-btn {
+  width: 100%;
+  padding: 0.875rem 1.25rem;
+  margin-top: 1rem;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #28ce6d, #24b460);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 219, 63, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
 

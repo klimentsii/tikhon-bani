@@ -1,0 +1,110 @@
+<div class="price-calculation-page">
+  <div class="page-header">
+    <h1>Рассчитать стоимость бани</h1>
+    <p>Выберите баню и необходимые комплектации для точного расчета цены</p>
+  </div>
+
+  <div class="calculation-content">
+    <!-- Выбранная баня -->
+    <div class="selected-product" *ngIf="selectedProduct">
+      <div class="product-image">
+        <img [src]="selectedProduct.image" [alt]="selectedProduct.name" />
+      </div>
+      <div class="product-info">
+        <h2>{{ selectedProduct.name }}</h2>
+        <p>{{ selectedProduct.description }}</p>
+        <div class="product-specs">
+          <div
+            class="spec-item"
+            [class.price-item]="spec.label === 'Цена:'"
+            [class.installment-item]="spec.label === 'Рассрочка:'"
+            *ngFor="let spec of selectedProduct.specifications"
+          >
+            <span class="spec-label">{{ spec.label }}</span>
+            <span class="spec-value">{{ spec.value }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Выбор комплектаций -->
+    <div class="equipment-section">
+      <h2>Выберите дополнительные комплектации</h2>
+      <p>Отметьте нужные опции для расчета итоговой стоимости</p>
+
+      <div class="equipment-grid">
+        <div
+          class="equipment-item"
+          *ngFor="let item of equipmentItems"
+          [class.selected]="item.selected"
+          (click)="toggleEquipment(item)"
+        >
+          <div class="equipment-icon">{{ item.icon }}</div>
+          <h3>{{ item.name }}</h3>
+          <div class="selection-indicator">
+            <span *ngIf="item.selected">✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Кнопка расчета -->
+    <div class="calculate-section">
+      <button class="calculate-btn" (click)="showContactFormModal()">Рассчитать стоимость</button>
+    </div>
+  </div>
+
+  <!-- Модальное окно с формой контактов -->
+  <div class="contact-modal" *ngIf="showContactForm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Оставить заявку на расчет</h3>
+        <button class="close-btn" (click)="hideContactForm()">×</button>
+      </div>
+
+      <form (ngSubmit)="submitContactForm()">
+        <div class="form-group">
+          <label for="name">Ваше имя *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="contactForm.name"
+            required
+            placeholder="Введите ваше имя"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Номер телефона *</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            [(ngModel)]="contactForm.phone"
+            required
+            placeholder="+375 (__) ___-__-__"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" (click)="hideContactForm()">Отмена</button>
+          <button type="submit" class="submit-btn" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Отправить заявку</span>
+            <span *ngIf="isSubmitting">Отправка...</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Сообщение об успешной отправке -->
+  <div class="success-message" *ngIf="showSuccessMessage">
+    <div class="success-content">
+      <div class="success-icon">✅</div>
+      <h2>Заявка отправлена!</h2>
+      <p>Мы свяжемся с вами в ближайшее время для уточнения деталей и расчета стоимости.</p>
+      <button class="close-button" (click)="hideSuccessMessage()">Закрыть</button>
+    </div>
+  </div>
+</div>
