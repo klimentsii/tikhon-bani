@@ -240,55 +240,80 @@ export class PriceCalculationComponent implements OnInit {
 
   hideContactForm() {
     this.showContactForm = false;
+  }
+
+  // Сброс формы после успешной отправки
+  resetForm() {
     this.contactForm = { name: '', phone: '' };
+    this.selectedProduct = null;
+    this.equipmentItems.forEach((item) => (item.selected = false));
+    this.showContactForm = false;
+  }
+
+  // Проверка, можно ли отправить форму
+  canSubmitForm(): boolean {
+    return (
+      !!this.contactForm.name.trim() && !!this.contactForm.phone.trim() && !!this.selectedProduct
+    );
   }
 
   submitContactForm() {
-    if (!this.contactForm.name.trim() || !this.contactForm.phone.trim()) {
+    if (!this.canSubmitForm()) {
+      alert('Пожалуйста, заполните все поля формы и выберите продукт');
       return;
     }
 
     this.isSubmitting = true;
 
+    const date = new Date();
+    const formattedDate = date.toLocaleString('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+
     // Отправляем данные в Telegram бот
     const priceSpec = this.selectedProduct?.specifications.find((spec) => spec.label === 'Цена:');
     const basePrice = priceSpec ? priceSpec.value : 'Не указана';
 
-    const message = `
-🔴 НОВАЯ ЗАЯВКА НА РАСЧЕТ СТОИМОСТИ
+    const message =
+      `📝 *Новая заявка на расчет стоимости*\n\n` +
+      `📅 Дата: ${formattedDate}\n` +
+      `🏠 Продукт: ${this.selectedProduct?.name || 'Не указан'}\n` +
+      `💰 Базовая цена: ${basePrice}\n` +
+      `⚙️ Выбранные комплектации: ${this.selectedEquipmentCount} шт.\n` +
+      `💵 Итоговая стоимость: ${this.totalPrice.toLocaleString()} BYN\n\n` +
+      `👤 Имя: ${this.contactForm.name}\n` +
+      `📱 Телефон: ${this.contactForm.phone}\n\n` +
+      `📋 Выбранные опции:\n` +
+      `${this.equipmentItems
+        .filter((item) => item.selected)
+        .map((item) => `• ${item.name} - ${item.price.toLocaleString()} BYN`)
+        .join('\n')}`;
 
-🏠 Продукт: ${this.selectedProduct?.name || 'Не указан'}
-💰 Базовая цена: ${basePrice}
-⚙️ Выбранные комплектации: ${this.selectedEquipmentCount} шт.
-💵 Итоговая стоимость: ${this.totalPrice.toLocaleString()} BYN
+    const url = `https://api.telegram.org/bot8409391989:AAGfNKCOk4pZP-nWHEzmRJ2JzN0EjnBcUkk/sendMessage`;
 
-👤 Имя: ${this.contactForm.name}
-📱 Телефон: ${this.contactForm.phone}
-
-📋 Выбранные опции:
-${this.equipmentItems
-  .filter((item) => item.selected)
-  .map((item) => `• ${item.name} - ${item.price.toLocaleString()} BYN`)
-  .join('\n')}
-    `;
-
-    const data = {
-      chat_id: '-1001234567890', // Замените на ваш chat_id
-      text: message,
-      parse_mode: 'HTML',
-    };
-
-    this.http.post('https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage', data).subscribe({
-      next: () => {
-        this.showSuccessMessage = true;
-        this.hideContactForm();
-        this.isSubmitting = false;
-      },
-      error: (error) => {
-        console.error('Ошибка отправки:', error);
-        this.isSubmitting = false;
-      },
-    });
+    this.http
+      .post(url, {
+        chat_id: '7557882902',
+        text: message,
+        parse_mode: 'Markdown',
+      })
+      .subscribe({
+        next: (response) => {
+          console.log('success', response);
+          this.showSuccessMessage = true;
+          this.resetForm();
+          this.isSubmitting = false;
+        },
+        error: (errorResponse) => {
+          console.log(errorResponse);
+          this.isSubmitting = false;
+        },
+      });
   }
 
   hideSuccessMessage() {
