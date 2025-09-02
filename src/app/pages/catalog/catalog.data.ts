@@ -32,8 +32,10 @@ export const CATALOG_DATA: CatalogSection[] = [
         specifications: [
           { label: 'Ширина:', value: '2,2 м' },
           { label: 'Высота:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '1,8 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,8 м' },
+          { label: 'Цена:', value: '3900 BYN' },
+          { label: 'Рассрочка:', value: 'от 110 BYN' },
+        ],
       },
       {
         id: 'barrel-3m',
@@ -44,8 +46,10 @@ export const CATALOG_DATA: CatalogSection[] = [
         specifications: [
           { label: 'Ширина:', value: '2,2 м' },
           { label: 'Высота:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '1,8 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,8 м' },
+          { label: 'Цена:', value: '4800 BYN' },
+          { label: 'Рассрочка:', value: 'от 130 BYN' },
+        ],
       },
       {
         id: 'barrel-4m',
@@ -56,8 +60,10 @@ export const CATALOG_DATA: CatalogSection[] = [
         specifications: [
           { label: 'Ширина:', value: '2,2 м' },
           { label: 'Высота:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '1,9 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,9 м' },
+          { label: 'Цена:', value: '6600 BYN' },
+          { label: 'Рассрочка:', value: 'от 170 BYN' },
+        ],
       },
       {
         id: 'barrel-5m',
@@ -70,8 +76,10 @@ export const CATALOG_DATA: CatalogSection[] = [
           { label: 'Высота:', value: '2 м' },
           { label: 'Комната отдыха:', value: '1,7 м' },
           { label: 'Душевая:', value: '1,2 м' },
-          { label: 'Парильное помещение:', value: '1,9 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,9 м' },
+          { label: 'Цена:', value: '7900 BYN' },
+          { label: 'Рассрочка:', value: 'от 310 BYN' },
+        ],
       },
       {
         id: 'barrel-6m',
@@ -84,15 +92,31 @@ export const CATALOG_DATA: CatalogSection[] = [
           { label: 'Высота:', value: '2 м' },
           { label: 'Комната отдыха:', value: '2 м' },
           { label: 'Душевая:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '2 м' }
-        ]
-      }
-    ]
+          { label: 'Парильное помещение:', value: '2 м' },
+          { label: 'Цена:', value: '9700 BYN' },
+          { label: 'Рассрочка:', value: 'от 310 BYN' },
+        ],
+      },
+    ],
   },
   {
     title: 'Квадро-бани',
     description: 'Современные квадро-бани с квадратной формой и расширенным функционалом',
     products: [
+      {
+        id: 'quadro-2m',
+        name: 'Баня квадро-бочка 2 метра',
+        image: 'assets/images/kvadro-bani/quadro-sauna-2-meters-basic.png',
+        alt: 'Баня квадро-бочка 2 метра',
+        isLiked: false,
+        specifications: [
+          { label: 'Ширина:', value: '2 м' },
+          { label: 'Высота:', value: '2 м' },
+          { label: 'Парильное помещение:', value: '1,75 м' },
+          { label: 'Цена:', value: '4300 BYN' },
+          { label: 'Рассрочка:', value: 'от 130 BYN' },
+        ],
+      },
       {
         id: 'quadro-3m',
         name: 'Баня квадро-бочка 3 метра',
@@ -102,8 +126,10 @@ export const CATALOG_DATA: CatalogSection[] = [
         specifications: [
           { label: 'Ширина:', value: '2,2 м' },
           { label: 'Высота:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '1,8 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,8 м' },
+          { label: 'Цена:', value: '5500 BYN' },
+          { label: 'Рассрочка:', value: 'от 165 BYN' },
+        ],
       },
       {
         id: 'quadro-4m',
@@ -114,8 +140,10 @@ export const CATALOG_DATA: CatalogSection[] = [
         specifications: [
           { label: 'Ширина:', value: '2,2 м' },
           { label: 'Высота:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '1,9 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,9 м' },
+          { label: 'Цена:', value: '7300 BYN' },
+          { label: 'Рассрочка:', value: 'от 190 BYN' },
+        ],
       },
       {
         id: 'quadro-5m',
@@ -128,8 +156,10 @@ export const CATALOG_DATA: CatalogSection[] = [
           { label: 'Высота:', value: '2 м' },
           { label: 'Комната отдыха:', value: '1,7 м' },
           { label: 'Душевая:', value: '1,2 м' },
-          { label: 'Парильное помещение:', value: '1,9 м' }
-        ]
+          { label: 'Парильное помещение:', value: '1,9 м' },
+          { label: 'Цена:', value: '11500 BYN' },
+          { label: 'Рассрочка:', value: 'от 350 BYN' },
+        ],
       },
       {
         id: 'quadro-6m',
@@ -142,9 +172,11 @@ export const CATALOG_DATA: CatalogSection[] = [
           { label: 'Высота:', value: '2 м' },
           { label: 'Комната отдыха:', value: '2 м' },
           { label: 'Душевая:', value: '2 м' },
-          { label: 'Парильное помещение:', value: '2 м' }
-        ]
-      }
-    ]
-  }
+          { label: 'Парильное помещение:', value: '2 м' },
+          { label: 'Цена:', value: '12420 BYN' },
+          { label: 'Рассрочка:', value: 'от 410 BYN' },
+        ],
+      },
+    ],
+  },
 ];
