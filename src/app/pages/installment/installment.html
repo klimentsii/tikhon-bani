@@ -14,24 +14,27 @@
 
   <!-- Форма пошагово -->
   <div class="form-container">
-    
     <!-- Шаг 1: Выбор типа кредита -->
     <div class="form-step" *ngIf="currentStep === 1">
       <h2>Вы хотели бы оформить кредит или рассрочку?</h2>
       <div class="options-grid">
-        <button class="option-button" 
-                (click)="selectCreditType('кредит')"
-                [class.selected]="answers.creditType === 'кредит'">
+        <button
+          class="option-button"
+          (click)="selectCreditType('кредит')"
+          [class.selected]="answers.creditType === 'кредит'"
+        >
           <div class="option-icon">💰</div>
           <div class="option-text">
             <h3>Кредит</h3>
             <p>Полная стоимость баня-бочки</p>
           </div>
         </button>
-        
-        <button class="option-button" 
-                (click)="selectCreditType('рассрочка')"
-                [class.selected]="answers.creditType === 'рассрочка'">
+
+        <button
+          class="option-button"
+          (click)="selectCreditType('рассрочка')"
+          [class.selected]="answers.creditType === 'рассрочка'"
+        >
           <div class="option-icon">📅</div>
           <div class="option-text">
             <h3>Рассрочка</h3>
@@ -45,29 +48,35 @@
     <div class="form-step" *ngIf="currentStep === 2">
       <h2>Какой срок для вас максимально комфортный?</h2>
       <div class="options-grid">
-        <button class="option-button" 
-                (click)="selectTerm('12-24 мес')"
-                [class.selected]="answers.term === '12-24 мес'">
+        <button
+          class="option-button"
+          (click)="selectTerm('12-24 мес')"
+          [class.selected]="answers.term === '12-24 мес'"
+        >
           <div class="option-icon">📆</div>
           <div class="option-text">
             <h3>12-24 месяца</h3>
             <p>Быстрое погашение</p>
           </div>
         </button>
-        
-        <button class="option-button" 
-                (click)="selectTerm('36-48 мес')"
-                [class.selected]="answers.term === '36-48 мес'">
+
+        <button
+          class="option-button"
+          (click)="selectTerm('36-48 мес')"
+          [class.selected]="answers.term === '36-48 мес'"
+        >
           <div class="option-icon">📅</div>
           <div class="option-text">
             <h3>36-48 месяцев</h3>
             <p>Оптимальный срок</p>
           </div>
         </button>
-        
-        <button class="option-button" 
-                (click)="selectTerm('48-60 мес')"
-                [class.selected]="answers.term === '48-60 мес'">
+
+        <button
+          class="option-button"
+          (click)="selectTerm('48-60 мес')"
+          [class.selected]="answers.term === '48-60 мес'"
+        >
           <div class="option-icon">⏰</div>
           <div class="option-text">
             <h3>48-60 месяцев</h3>
@@ -81,29 +90,35 @@
     <div class="form-step" *ngIf="currentStep === 3">
       <h2>Какая ежемесячная плата вас устроит?</h2>
       <div class="options-grid">
-        <button class="option-button" 
-                (click)="selectMonthlyPayment('150-200 BYN')"
-                [class.selected]="answers.monthlyPayment === '150-200 BYN'">
+        <button
+          class="option-button"
+          (click)="selectMonthlyPayment('150-200 BYN')"
+          [class.selected]="answers.monthlyPayment === '150-200 BYN'"
+        >
           <div class="option-icon">💳</div>
           <div class="option-text">
             <h3>150-200 BYN</h3>
             <p>Минимальная нагрузка</p>
           </div>
         </button>
-        
-        <button class="option-button" 
-                (click)="selectMonthlyPayment('200-300 BYN')"
-                [class.selected]="answers.monthlyPayment === '200-300 BYN'">
+
+        <button
+          class="option-button"
+          (click)="selectMonthlyPayment('200-300 BYN')"
+          [class.selected]="answers.monthlyPayment === '200-300 BYN'"
+        >
           <div class="option-icon">💳</div>
           <div class="option-text">
             <h3>200-300 BYN</h3>
             <p>Стандартные условия</p>
           </div>
         </button>
-        
-        <button class="option-button" 
-                (click)="selectMonthlyPayment('300-500 BYN')"
-                [class.selected]="answers.monthlyPayment === '300-500 BYN'">
+
+        <button
+          class="option-button"
+          (click)="selectMonthlyPayment('300-500 BYN')"
+          [class.selected]="answers.monthlyPayment === '300-500 BYN'"
+        >
           <div class="option-icon">💳</div>
           <div class="option-text">
             <h3>300-500 BYN</h3>
@@ -117,28 +132,32 @@
     <div class="form-step" *ngIf="currentStep === 4">
       <h2>Оставьте свои контактные данные</h2>
       <p>Мы свяжемся с вами и подберем оптимальные условия</p>
-      
+
       <div class="contact-form">
         <div class="form-group">
           <label for="name">Ваше имя *</label>
-          <input type="text" 
-                 id="name" 
-                 name="name" 
-                 [(ngModel)]="answers.name"
-                 placeholder="Введите ваше имя"
-                 required>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            [(ngModel)]="answers.name"
+            placeholder="Введите ваше имя"
+            required
+          />
         </div>
-        
+
         <div class="form-group">
           <label for="phone">Номер телефона *</label>
-          <input type="tel" 
-                 id="phone" 
-                 name="phone" 
-                 [(ngModel)]="answers.phone"
-                 placeholder="+375 (__) ___-__-__"
-                 required>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            [(ngModel)]="answers.phone"
+            placeholder="+375 (__) ___-__-__"
+            required
+          />
         </div>
-        
+
         <div class="summary">
           <h3>Ваши ответы:</h3>
           <div class="summary-item">
@@ -159,18 +178,31 @@
 
     <!-- Навигация по шагам -->
     <div class="step-navigation">
-      <button class="nav-button prev" 
-              (click)="previousStep()" 
-              *ngIf="currentStep > 1">
+      <button class="nav-button prev" (click)="previousStep()" *ngIf="currentStep > 1">
         ← Назад
       </button>
-      
-      <button class="nav-button next" 
-              (click)="submitForm()" 
-              *ngIf="currentStep === 4"
-              [disabled]="!canProceed()">
+
+      <button
+        class="nav-button next"
+        (click)="submitForm()"
+        *ngIf="currentStep === 4"
+        [disabled]="!canProceed()"
+      >
         Отправить заявку
       </button>
+    </div>
+  </div>
+
+  <!-- Сообщение об успешной отправке -->
+  <div class="success-message" *ngIf="showSuccessMessage">
+    <div class="success-content">
+      <div class="success-icon">✅</div>
+      <h2>Заявка успешно отправлена!</h2>
+      <p>
+        Спасибо за вашу заявку. Мы свяжемся с вами в ближайшее время для обсуждения деталей
+        рассрочки.
+      </p>
+      <button class="close-button" (click)="hideSuccessMessage()">Закрыть</button>
     </div>
   </div>
 </div>
