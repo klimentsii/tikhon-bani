@@ -102,59 +102,59 @@ $nav-active-bg: #2d5a27;
     padding: 0;
     gap: 30px;
 
-          li {
-        a {
-          text-decoration: none;
-          color: #333;
-          font-weight: 500;
-          padding: 8px 16px;
-          border-radius: 6px;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
+    li {
+      a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-          &:hover {
-            background: $nav-hover-bg;
-            color: $logo-color;
-          }
-
-          &.active {
-            background: $nav-active-bg;
-            color: white;
-          }
+        &:hover {
+          background: $nav-hover-bg;
+          color: $logo-color;
         }
 
-        &.favorites-item {
-          position: relative;
-
-          a {
-            display: flex;
-            align-items: center;
-          }
-
-          .favorites-icon {
-            font-size: 1.2rem;
-            margin-right: 0.3rem;
-          }
-
-          .favorites-badge {
-            background: #e74c3c;
-            color: white;
-            border-radius: 50%;
-            min-width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 0 6px;
-            line-height: 1;
-            animation: badgePulse 0.6s ease;
-          }
+        &.active {
+          background: $nav-active-bg;
+          color: white;
         }
       }
+
+      &.cart-item {
+        position: relative;
+
+        a {
+          display: flex;
+          align-items: center;
+        }
+
+        .cart-icon {
+          font-size: 1.2rem;
+          margin-right: 0.3rem;
+        }
+
+        .cart-badge {
+          background: #2ecc71;
+          color: white;
+          border-radius: 50%;
+          min-width: 20px;
+          height: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: 600;
+          padding: 0 6px;
+          line-height: 1;
+          animation: badgePulse 0.6s ease;
+        }
+      }
+    }
   }
 }
 
@@ -276,7 +276,7 @@ $nav-active-bg: #2d5a27;
   }
 }
 
-// Анимация для бейджа лайков
+// Анимация для бейджа корзины
 @keyframes badgePulse {
   0% {
     transform: scale(1);

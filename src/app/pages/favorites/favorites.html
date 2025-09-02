@@ -1,54 +1,54 @@
 <div class="favorites-page">
   <div class="favorites-header">
-    <h1>Избранные товары</h1>
-    @if (likesCount > 0) {
-      <p>У вас {{ likesCount }} избранных товаров</p>
+    <h1>Корзина</h1>
+    @if (cartCount > 0) {
+    <p>У вас {{ cartCount }} товаров в корзине</p>
     } @else {
-      <p>У вас пока нет избранных товаров</p>
+    <p>Ваша корзина пуста</p>
     }
   </div>
 
-  @if (likesCount > 0) {
-    <div class="favorites-content">
-      <div class="favorites-grid">
-        @for (product of likedProducts; track trackByProductId($index, product)) {
-          <div class="favorite-item">
-            <div class="product-image">
-              <img [src]="product.image" 
-                   [alt]="product.alt" 
-                   loading="lazy">
-              <button class="remove-button" 
-                      (click)="removeFromFavorites(product.id)"
-                      title="Убрать из избранного">
-                ✕
-              </button>
+  @if (cartCount > 0) {
+  <div class="favorites-content">
+    <div class="favorites-grid">
+      @for (product of cartProducts; track trackByProductId($index, product)) {
+      <div class="favorite-item">
+        <div class="product-image">
+          <img [src]="product.image" [alt]="product.alt" loading="lazy" />
+          <button
+            class="remove-button"
+            (click)="removeFromCart(product.id)"
+            title="Убрать из корзины"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="product-info">
+          <h3>{{ product.name }}</h3>
+          @if (product.specifications.length > 0) {
+          <div class="specifications">
+            @for (spec of product.specifications; track spec.label) {
+            <div class="spec-item">
+              <span class="spec-label">{{ spec.label }}</span>
+              <span class="spec-value">{{ spec.value }}</span>
             </div>
-            <div class="product-info">
-              <h3>{{ product.name }}</h3>
-              @if (product.specifications.length > 0) {
-                <div class="specifications">
-                  @for (spec of product.specifications; track spec.label) {
-                    <div class="spec-item">
-                      <span class="spec-label">{{ spec.label }}</span>
-                      <span class="spec-value">{{ spec.value }}</span>
-                    </div>
-                  }
-                </div>
-              }
-              <div class="actions">
-                <a routerLink="/catalog" class="view-catalog-btn">Посмотреть в каталоге</a>
-              </div>
-            </div>
+            }
           </div>
-        }
+          }
+          <div class="actions">
+            <a routerLink="/catalog" class="view-catalog-btn">Посмотреть в каталоге</a>
+          </div>
+        </div>
       </div>
+      }
     </div>
+  </div>
   } @else {
-    <div class="empty-favorites">
-      <div class="empty-icon">🛒</div>
-      <h2>Корзина избранного пуста</h2>
-      <p>Перейдите в каталог и добавьте понравившиеся товары в избранное</p>
-      <a routerLink="/catalog" class="go-to-catalog-btn">Перейти в каталог</a>
-    </div>
+  <div class="empty-favorites">
+    <div class="empty-icon">🛒</div>
+    <h2>Корзина пуста</h2>
+    <p>Перейдите в каталог и добавьте понравившиеся товары в корзину</p>
+    <a routerLink="/catalog" class="go-to-catalog-btn">Перейти в каталог</a>
+  </div>
   }
 </div>

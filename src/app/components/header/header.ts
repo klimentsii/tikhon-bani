@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ScrollService } from '../../services/scroll';
-import { LikesService } from '../../services/likes.service';
+import { CartService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,27 +10,24 @@ import { Subscription } from 'rxjs';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss'
+  styleUrl: './header.scss',
 })
 export class Header implements OnInit, OnDestroy {
   isMobileMenuOpen = false;
-  likesCount = 0;
-  private likesSubscription!: Subscription;
+  cartCount = 0;
+  private cartSubscription!: Subscription;
 
-  constructor(
-    private scrollService: ScrollService,
-    private likesService: LikesService
-  ) {}
+  constructor(private scrollService: ScrollService, private cartService: CartService) {}
 
   ngOnInit() {
-    this.likesSubscription = this.likesService.likesCount$.subscribe(count => {
-      this.likesCount = count;
+    this.cartSubscription = this.cartService.cartCount$.subscribe((count) => {
+      this.cartCount = count;
     });
   }
 
   ngOnDestroy() {
-    if (this.likesSubscription) {
-      this.likesSubscription.unsubscribe();
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
     }
   }
 

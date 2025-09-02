@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 import { RouterLink } from '@angular/router';
-import { LikesService } from '../../services/likes.service';
+import { CartService } from '../../services/cart.service';
 import { Product, CATALOG_DATA } from '../catalog/catalog.data';
 
 @Component({
@@ -10,67 +10,74 @@ import { Product, CATALOG_DATA } from '../catalog/catalog.data';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './favorites.html',
-  styleUrl: './favorites.scss'
+  styleUrl: './favorites.scss',
 })
 export class Favorites implements OnInit {
-  likedProducts: Product[] = [];
-  likesCount = 0;
+  cartProducts: Product[] = [];
+  cartCount = 0;
 
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private likesService: LikesService
+    private cartService: CartService
   ) {}
 
   ngOnInit() {
-    this.titleService.setTitle('Избранные товары | BANYA TUT');
-    this.metaService.updateTag({ name: 'description', content: 'Ваши избранные бани-бочки и квадро-бани от BANYA TUT. Просматривайте понравившиеся товары и сравнивайте их характеристики.' });
-    this.metaService.updateTag({ name: 'keywords', content: 'избранные бани, понравившиеся товары, бани-бочки, квадро-бани' });
-    
-    this.loadLikedProducts();
+    this.titleService.setTitle('Корзина | BANYA TUT');
+    this.metaService.updateTag({
+      name: 'description',
+      content:
+        'Ваша корзина с бани-бочками и квадро-банями от BANYA TUT. Просматривайте выбранные товары и оформляйте заказ.',
+    });
+    this.metaService.updateTag({
+      name: 'keywords',
+      content: 'корзина, выбранные товары, бани-бочки, квадро-бани, заказ',
+    });
+
+    this.loadCartProducts();
   }
 
-  private loadLikedProducts(): void {
+  private loadCartProducts(): void {
     try {
-      const savedLikes = localStorage.getItem('catalog_likes');
-      if (savedLikes) {
-        const likesMap = JSON.parse(savedLikes);
-        const likedIds = Object.keys(likesMap).filter(id => likesMap[id] === true);
-        
+      const savedCart = localStorage.getItem('catalog_cart');
+      if (savedCart) {
+        const cartMap = JSON.parse(savedCart);
+        const cartIds = Object.keys(cartMap).filter((id) => cartMap[id] === true);
+
         // Загружаем полную информацию о продуктах из каталога
-        this.likedProducts = [];
-        CATALOG_DATA.forEach(section => {
-          section.products.forEach(product => {
-            if (likedIds.includes(product.id)) {
-              this.likedProducts.push({ ...product, isLiked: true });
+        this.cartProducts = [];
+        CATALOG_DATA.forEach((section) => {
+          section.products.forEach((product) => {
+            if (cartIds.includes(product.id)) {
+              this.cartProducts.push({ ...product, isLiked: true });
             }
           });
         });
-        
-        this.likesCount = this.likedProducts.length;
+
+        this.cartCount = this.cartProducts.length;
       }
     } catch (error) {
-      console.error('Ошибка при загрузке избранных товаров:', error);
+      console.error('Ошибка при загрузке товаров в корзине:', error);
     }
   }
 
-  removeFromFavorites(productId: string): void {
+  removeFromCart(productId: string): void {
     try {
-      const savedLikes = localStorage.getItem('catalog_likes');
-      if (savedLikes) {
-        const likesMap = JSON.parse(savedLikes);
-        likesMap[productId] = false;
-        localStorage.setItem('catalog_likes', JSON.stringify(likesMap));
-        
+      const savedCart = localStorage.getItem('catalog_cart');
+      if (savedCart) {
+        const cartMap = JSON.parse(savedCart);
+        cartMap[productId] = false;
+        localStorage.setItem('catalog_cart', JSON.stringify(cartMap));
+
         // Обновляем счетчик в сервисе
-        this.likesService.updateLikesCount(likesMap);
-        
+        this.cartService.updateCartCount(cartMap);
+
         // Убираем товар из списка
-        this.likedProducts = this.likedProducts.filter(p => p.id !== productId);
-        this.likesCount = this.likedProducts.length;
+        this.cartProducts = this.cartProducts.filter((p) => p.id !== productId);
+        this.cartCount = this.cartProducts.length;
       }
     } catch (error) {
-      console.error('Ошибка при удалении из избранного:', error);
+      console.error('Ошибка при удалении из корзины:', error);
     }
   }
 

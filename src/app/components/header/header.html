@@ -3,20 +3,25 @@
     <!-- Логотип -->
     <div class="logo">
       <a routerLink="/home" (click)="onNavClick()" title="BANYA TUT - Главная страница">
-        <img 
-          src="./banya-tut-logo.png" 
-          alt="BANYA TUT - Логотип компании по производству банного оборудования" 
+        <img
+          src="./banya-tut-logo.png"
+          alt="BANYA TUT - Логотип компании по производству банного оборудования"
           class="logo-image"
           width="200"
           height="60"
           loading="eager"
           title="BANYA TUT - Производство банного оборудования"
-        >
+        />
       </a>
     </div>
 
     <!-- Мобильная кнопка меню -->
-    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="isMobileMenuOpen" aria-label="Открыть меню">
+    <button
+      class="mobile-menu-toggle"
+      (click)="toggleMobileMenu()"
+      [class.active]="isMobileMenuOpen"
+      aria-label="Открыть меню"
+    >
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
       <span class="hamburger-line"></span>
@@ -26,16 +31,27 @@
     <nav class="nav" [class.mobile-open]="isMobileMenuOpen">
       <ul class="nav-list">
         <li><a routerLink="/home" routerLinkActive="active" (click)="onNavClick()">Главная</a></li>
-        <li><a routerLink="/installment" routerLinkActive="active" (click)="onNavClick()">Рассрочка</a></li>
-        <li><a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a></li>
-        <li><a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()">Комплектация</a></li>
-        <li><a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a></li>
-        <li class="favorites-item">
+        <li>
+          <a routerLink="/installment" routerLinkActive="active" (click)="onNavClick()"
+            >Рассрочка</a
+          >
+        </li>
+        <li>
+          <a routerLink="/catalog" routerLinkActive="active" (click)="onNavClick()">Каталог</a>
+        </li>
+        <li>
+          <a routerLink="/equipment" routerLinkActive="active" (click)="onNavClick()"
+            >Комплектация</a
+          >
+        </li>
+        <li>
+          <a routerLink="/contacts" routerLinkActive="active" (click)="onNavClick()">Контакты</a>
+        </li>
+        <li class="cart-item">
           <a routerLink="/favorites" routerLinkActive="active" (click)="onNavClick()">
-            <span class="favorites-icon">🛒</span>
-            Избранное
-            @if (likesCount > 0) {
-              <span class="favorites-badge">{{ likesCount }}</span>
+            <span class="cart-icon">🛒</span>
+            Корзина @if (cartCount > 0) {
+            <span class="cart-badge">{{ cartCount }}</span>
             }
           </a>
         </li>
