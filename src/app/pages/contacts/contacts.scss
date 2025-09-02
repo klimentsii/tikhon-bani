@@ -184,6 +184,20 @@ $accent-color: #4a7c59;
       background: #000000;
     }
   }
+
+  // WhatsApp
+  &.whatsapp {
+    .social-icon {
+      background: #25d366;
+    }
+  }
+
+  // Viber
+  &.viber {
+    .social-icon {
+      background: #665cac;
+    }
+  }
 }
 
 .additional-info {
