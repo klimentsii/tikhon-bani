@@ -2,17 +2,23 @@
 $page-title-color: #2d5a27;
 $page-text-color: #2c3e2d;
 $page-bg: #ffffff;
+$accent-color: #3498db;
+$success-color: #2ecc71;
 
 .equipment-page {
-  padding: 40px 20px;
-  text-align: center;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 2rem 1rem;
   background: $page-bg;
+}
+
+.equipment-header {
+  text-align: center;
+  margin-bottom: 3rem;
 
   h1 {
     color: $page-title-color;
-    margin-bottom: 20px;
+    margin-bottom: 1rem;
     font-size: 2.5rem;
     font-weight: 700;
   }
@@ -21,5 +27,286 @@ $page-bg: #ffffff;
     color: $page-text-color;
     font-size: 1.2rem;
     line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.equipment-content {
+  .equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 4rem;
+  }
+}
+
+.equipment-item {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ecf0f1;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: $accent-color;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $accent-color, $success-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+
+  .equipment-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .equipment-icon {
+    transform: scale(1.03);
+  }
+
+  h3 {
+    color: $page-title-color;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: $page-text-color;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    margin: 0;
+  }
+}
+
+.equipment-info {
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+
+  h2 {
+    color: $page-title-color;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    color: $page-text-color;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    .feature {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .feature-icon {
+        font-size: 1.2rem;
+        color: $success-color;
+      }
+
+      span:last-child {
+        color: $page-text-color;
+        font-weight: 500;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media (max-width: 768px) {
+  .equipment-page {
+    padding: 1rem 0.5rem;
+  }
+
+  .equipment-header {
+    margin-bottom: 2rem;
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      max-width: 100%;
+    }
+  }
+
+  .equipment-content {
+    .equipment-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  .equipment-item {
+    padding: 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    &::before {
+      height: 3px;
+    }
+
+    .equipment-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &:hover .equipment-icon {
+      transform: scale(1.02);
+    }
+
+    h3 {
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    p {
+      font-size: 0.75rem;
+      line-height: 1.3;
+    }
+  }
+
+  .equipment-info {
+    padding: 1.5rem 1rem;
+    margin-top: 1.5rem;
+    border-radius: 15px;
+
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      max-width: 100%;
+    }
+
+    .features {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+
+      .feature {
+        padding: 0.75rem 0.5rem;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .feature-icon {
+          font-size: 1rem;
+        }
+
+        span:last-child {
+          font-size: 0.85rem;
+        }
+      }
+    }
+  }
+}
+
+// Адаптивность для очень маленьких экранов
+@media (max-width: 480px) {
+  .equipment-content {
+    .equipment-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem;
+    }
+  }
+
+  .equipment-item {
+    padding: 0.5rem;
+
+    .equipment-icon {
+      font-size: 1.25rem;
+    }
+
+    h3 {
+      font-size: 0.8rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+
+  .equipment-info {
+    padding: 1rem 0.75rem;
+
+    .features {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+  }
+}
+
+// Адаптивность для планшетов
+@media (min-width: 769px) and (max-width: 1024px) {
+  .equipment-content {
+    .equipment-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
   }
 }
