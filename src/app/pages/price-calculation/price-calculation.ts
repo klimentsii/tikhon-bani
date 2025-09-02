@@ -10,7 +10,6 @@ interface EquipmentItem {
   name: string;
   description: string;
   icon: string;
-  price: number;
   selected: boolean;
 }
 
@@ -104,7 +103,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Утеплитель',
         description: 'Качественный утеплитель для сохранения тепла',
         icon: '🧱',
-        price: 15000,
         selected: false,
       },
       {
@@ -112,7 +110,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Г-образные полки',
         description: 'Удобные полки для комфортного парения',
         icon: '🪑',
-        price: 25000,
         selected: false,
       },
       {
@@ -120,7 +117,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Печь',
         description: 'Надежная печь для создания идеального пара',
         icon: '🔥',
-        price: 35000,
         selected: false,
       },
       {
@@ -128,7 +124,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Козырек',
         description: 'Защита от осадков над входом в баню',
         icon: '☂️',
-        price: 12000,
         selected: false,
       },
       {
@@ -136,7 +131,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Крыльцо',
         description: 'Удобный вход в баню с красивым оформлением',
         icon: '🚪',
-        price: 18000,
         selected: false,
       },
       {
@@ -144,7 +138,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Печь снаружи вынос',
         description: 'Безопасная топка печи снаружи бани',
         icon: '🏭',
-        price: 45000,
         selected: false,
       },
       {
@@ -152,7 +145,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Сосновый стол',
         description: 'Натуральный стол для комнаты отдыха',
         icon: '🪑',
-        price: 22000,
         selected: false,
       },
       {
@@ -160,7 +152,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Рундук',
         description: 'Встроенное место для хранения вещей',
         icon: '📦',
-        price: 15000,
         selected: false,
       },
       {
@@ -168,7 +159,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Верхние полки',
         description: 'Дополнительные полки для хранения',
         icon: '📚',
-        price: 12000,
         selected: false,
       },
       {
@@ -176,7 +166,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Душ комплект',
         description: 'Полный комплект для душевой кабины',
         icon: '🚿',
-        price: 28000,
         selected: false,
       },
       {
@@ -184,7 +173,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Уличные ступени',
         description: 'Безопасные ступени для входа в баню',
         icon: '⬆️',
-        price: 8000,
         selected: false,
       },
       {
@@ -192,7 +180,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Дополнительная пропитка',
         description: 'Защита древесины от влаги и гниения',
         icon: '🎨',
-        price: 5000,
         selected: false,
       },
       {
@@ -200,7 +187,6 @@ export class PriceCalculationComponent implements OnInit {
         name: 'Комплект лавки + стол',
         description: 'Уютная зона отдыха с мебелью',
         icon: '🪑',
-        price: 30000,
         selected: false,
       },
     ];
@@ -208,20 +194,6 @@ export class PriceCalculationComponent implements OnInit {
 
   toggleEquipment(item: EquipmentItem) {
     item.selected = !item.selected;
-  }
-
-  get totalPrice(): number {
-    if (!this.selectedProduct) return 0;
-
-    const equipmentPrice = this.equipmentItems
-      .filter((item) => item.selected)
-      .reduce((sum, item) => sum + item.price, 0);
-
-    // Получаем базовую цену из specifications
-    const priceSpec = this.selectedProduct.specifications.find((spec) => spec.label === 'Цена:');
-    const basePrice = priceSpec ? this.extractPriceFromString(priceSpec.value) : 0;
-
-    return basePrice + equipmentPrice;
   }
 
   private extractPriceFromString(priceString: string): number {
@@ -282,16 +254,15 @@ export class PriceCalculationComponent implements OnInit {
     const message =
       `📝 *Новая заявка на расчет стоимости*\n\n` +
       `📅 Дата: ${formattedDate}\n` +
+      `👤 Имя: ${this.contactForm.name}\n` +
+      `📞 Номер: ${this.contactForm.phone}\n\n` +
       `🏠 Продукт: ${this.selectedProduct?.name || 'Не указан'}\n` +
       `💰 Базовая цена: ${basePrice}\n` +
       `⚙️ Выбранные комплектации: ${this.selectedEquipmentCount} шт.\n` +
-      `💵 Итоговая стоимость: ${this.totalPrice.toLocaleString()} BYN\n\n` +
-      `👤 Имя: ${this.contactForm.name}\n` +
-      `📱 Телефон: ${this.contactForm.phone}\n\n` +
       `📋 Выбранные опции:\n` +
       `${this.equipmentItems
         .filter((item) => item.selected)
-        .map((item) => `• ${item.name} - ${item.price.toLocaleString()} BYN`)
+        .map((item) => `• ${item.name}`)
         .join('\n')}`;
 
     const url = `https://api.telegram.org/bot8409391989:AAGfNKCOk4pZP-nWHEzmRJ2JzN0EjnBcUkk/sendMessage`;
