@@ -28,7 +28,11 @@
           @if (product.specifications.length > 0) {
           <div class="specifications">
             @for (spec of product.specifications; track spec.label) {
-            <div class="spec-item">
+            <div
+              class="spec-item"
+              [class.price-item]="spec.label === 'Цена:'"
+              [class.installment-item]="spec.label === 'Рассрочка:'"
+            >
               <span class="spec-label">{{ spec.label }}</span>
               <span class="spec-value">{{ spec.value }}</span>
             </div>
