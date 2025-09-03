@@ -10,4 +10,4 @@ Disallow: /*.ts
 Disallow: /*.scss
 
 # Указываем расположение sitemap
-Sitemap: https://banya-tut.ru/sitemap.xml
+Sitemap: https://banya-tut.by/sitemap.xml
