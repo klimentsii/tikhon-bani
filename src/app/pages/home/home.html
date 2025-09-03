@@ -156,3 +156,15 @@
     </div>
   </section>
 </main>
+
+<!-- Модальное окно успешной отправки -->
+@if (showSuccessMessage) {
+  <div class="success-modal">
+    <div class="success-content">
+      <div class="success-icon">✅</div>
+      <h2>Заявка отправлена!</h2>
+      <p>Спасибо за обращение! Мы свяжемся с вами в ближайшее время для расчета стоимости бани.</p>
+      <button class="btn btn-primary" (click)="hideSuccessMessage()">Закрыть</button>
+    </div>
+  </div>
+}

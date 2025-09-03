@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -11,9 +13,11 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrl: './home.scss'
 })
 export class Home implements OnInit {
+  http = inject(HttpClient);
   showCalculator = false;
   phoneNumber = '';
   selectedBathType = '';
+  showSuccessMessage = false;
 
   constructor(
     private titleService: Title,
@@ -28,20 +32,58 @@ export class Home implements OnInit {
 
   calculatePrice() {
     if (this.phoneNumber && this.selectedBathType) {
-      console.log('Расчет стоимости:', {
-        phone: this.phoneNumber,
-        type: this.selectedBathType
+      const date = new Date();
+      const formattedDate = date.toLocaleString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
       });
-      
-      // Здесь можно добавить логику отправки данных
-      alert('Спасибо! Мы свяжемся с вами для расчета стоимости.');
-      
-      // Сброс формы
-      this.phoneNumber = '';
-      this.selectedBathType = '';
-      this.showCalculator = false;
+
+      const bathTypeText = this.selectedBathType === 'square' ? 'Квадратная баня' : 'Баня-бочка';
+
+      const message =
+        `🏠 *Заявка на расчет стоимости бани*\n\n` +
+        `📅 Дата: ${formattedDate}\n` +
+        `📞 Номер телефона: ${this.phoneNumber}\n` +
+        `🏡 Тип бани: ${bathTypeText}\n` +
+        `📝 Источник: Главная страница`;
+
+      const url = `https://api.telegram.org/bot8409391989:AAGfNKCOk4pZP-nWHEzmRJ2JzN0EjnBcUkk/sendMessage`;
+
+      this.http
+        .post(url, {
+          chat_id: '7557882902',
+          text: message,
+          parse_mode: 'Markdown',
+        })
+        .subscribe({
+          next: (response) => {
+            console.log('success', response);
+            this.showSuccessMessage = true;
+            this.resetForm();
+          },
+          error: (errorResponse) => {
+            console.log(errorResponse);
+            alert('Произошла ошибка при отправке заявки. Попробуйте еще раз.');
+          },
+        });
     } else {
       alert('Пожалуйста, заполните все поля');
     }
+  }
+
+  // Обнуление формы
+  resetForm() {
+    this.phoneNumber = '';
+    this.selectedBathType = '';
+    this.showCalculator = false;
+  }
+
+  // Скрытие сообщения об успехе
+  hideSuccessMessage() {
+    this.showSuccessMessage = false;
   }
 }
