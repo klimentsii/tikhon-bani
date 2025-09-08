@@ -53,6 +53,7 @@ export class Home implements OnInit {
 
       const url = `https://api.telegram.org/bot8409391989:AAGfNKCOk4pZP-nWHEzmRJ2JzN0EjnBcUkk/sendMessage`;
 
+      // Отправляем в основной чат
       this.http
         .post(url, {
           chat_id: '7557882902',
@@ -61,12 +62,28 @@ export class Home implements OnInit {
         })
         .subscribe({
           next: (response) => {
-            console.log('success', response);
+            console.log('success main chat', response);
+          },
+          error: (errorResponse) => {
+            console.log('error main chat', errorResponse);
+          },
+        });
+
+      // Отправляем в дополнительный чат
+      this.http
+        .post(url, {
+          chat_id: '5390444241',
+          text: message,
+          parse_mode: 'Markdown',
+        })
+        .subscribe({
+          next: (response) => {
+            console.log('success additional chat', response);
             this.showSuccessMessage = true;
             this.resetForm();
           },
           error: (errorResponse) => {
-            console.log(errorResponse);
+            console.log('error additional chat', errorResponse);
             alert('Произошла ошибка при отправке заявки. Попробуйте еще раз.');
           },
         });

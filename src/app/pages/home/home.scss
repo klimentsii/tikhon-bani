@@ -33,6 +33,23 @@ $accent-color: #4a7c59;
     max-width: 600px;
     margin: 0 auto;
   }
+
+  // YouTube Shorts контейнер
+  .youtube-shorts-container {
+    margin: 40px auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    
+    iframe {
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(45, 90, 39, 0.15);
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 9/16; // Сохраняем пропорции вертикального видео
+    }
+  }
 }
 
 // Секция калькулятора
@@ -271,6 +288,18 @@ $accent-color: #4a7c59;
     .hero-subtitle {
       font-size: 1.1rem;
     }
+
+    .youtube-shorts-container {
+      margin: 30px auto 0;
+      max-width: 400px;
+      
+      iframe {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        aspect-ratio: 9/16;
+      }
+    }
   }
 
   .calculator-section {
@@ -330,6 +359,18 @@ $accent-color: #4a7c59;
 
     h1 {
       font-size: 1.8rem;
+    }
+
+    .youtube-shorts-container {
+      margin: 25px auto 0;
+      max-width: 320px;
+      
+      iframe {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        aspect-ratio: 9/16;
+      }
     }
   }
 
